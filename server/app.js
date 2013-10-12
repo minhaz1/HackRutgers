@@ -230,7 +230,7 @@ app.post('/register', function(req, res, next) {
   }
   else if(userPass == ""){
      var canAdd = false;
-     req.session.messages = "No password entered".
+     req.session.messages = "No password entered";
   } else if(userPass != secPass){
      var canAdd = false;
      req.session.messages = "Passwords do not match.";
@@ -260,8 +260,8 @@ app.get('/logout', function(req, res){
   res.redirect('/');
 });
 
-app.listen(3000, function() {
-  console.log('Express server listening on port 3000');
+app.listen(3002, function() {
+  console.log('Express server listening on port 3002');
 });
 
 
