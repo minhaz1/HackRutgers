@@ -1,4 +1,7 @@
 <% layout('layout') -%>
+<% if (message) { %>
+<p><%= message %></p>
+<% } %>
 <form action="/register" method="post">
 	<div>
 	<label>First Name:</label>
