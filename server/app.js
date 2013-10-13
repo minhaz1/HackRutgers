@@ -182,10 +182,14 @@ app.post('/login',
 // POST /login
 //   This is an alternative implementation that uses a custom callback to
 //   acheive the same functionality.
+var usr = new User({firstname: 'gaurang', lastname: 'bhatt', username: 'gaurang', email: 'gb4@umbc.edu', password: 'yesha' });
+
+
 app.post('/login', function(req, res, next) {
   passport.authenticate('local', function(err, user, info) {
     if (err) { return next(err) }
       if (!user) {
+        console.log("user: " + req.param('username'));
         req.session.messages =  [info.message];
         return res.redirect('/login')
       }
@@ -195,8 +199,6 @@ app.post('/login', function(req, res, next) {
       });
     })(req, res, next);
   });
-
-// var usr = new User({firstname: 'gaurang', lastname: 'bhatt', username: 'gb4', email: 'gb4@umbc.edu', password: 'yesha' });
 
 app.post('/register', function(req, res, next) {
   var fname = req.param('firstname');
