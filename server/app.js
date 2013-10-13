@@ -205,6 +205,7 @@ app.post('/register', function(req, res, next) {
   var userName = req.param('username');
   var userPass = req.param('password');
   var secPass = req.param('secondPassword');
+  var canAdd = true;
 
   if(email.indexOf(".edu") < 3) {
      var canAdd = false;
@@ -230,6 +231,7 @@ app.post('/register', function(req, res, next) {
 
     req.logIn(user, function(err) {
       if (err) { return next(err); }
+      req.session.message = "";
       return res.redirect('/');
     });
   } else {
