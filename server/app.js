@@ -163,6 +163,10 @@ app.get('/register', function(req, res){
   res.render('register', { user: req.user, message: req.session.messages });
 });
 
+app.get('/dashboard', function(req, res){
+  res.render('dashboard', { user: req.user, message: req.session.messages });
+});
+
 // POST /login
 //   Use passport.authenticate() as route middleware to authenticate the
 //   request.  If authentication fails, the user will be redirected back to the
@@ -235,7 +239,7 @@ app.post('/register', function(req, res, next) {
     req.logIn(user, function(err) {
       if (err) { return next(err); }
       req.session.message = "";
-      return res.redirect('/');
+      return res.redirect('/dashboard');
     });
   } else {
     return res.redirect('/register')
