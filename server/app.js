@@ -251,7 +251,7 @@ app.post('/register', function(req, res, next) {
       return res.redirect('/');
     });
   } else {
-    return res.redirect('/login')
+    return res.redirect('/register')
   }
 });
 
