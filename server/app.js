@@ -208,15 +208,16 @@ app.post('/register', function(req, res, next) {
   var canAdd = true;
 
   if(email.indexOf(".edu") < 3) {
-     var canAdd = false;
-     req.session.messages = "Invalid e-mail address. Requires a .edu account.";
+    console.log(email);
+    canAdd = false;
+    req.session.messages = "Invalid e-mail address. Requires a .edu account.";
   }
   else if(userPass == ""){
-     var canAdd = false;
-     req.session.messages = "No password entered";
+    canAdd = false;
+    req.session.messages = "No password entered";
   } else if(userPass != secPass){
-     var canAdd = false;
-     req.session.messages = "Passwords do not match.";
+    canAdd = false;
+    req.session.messages = "Passwords do not match.";
   }
 
   if(canAdd) {
