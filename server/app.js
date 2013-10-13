@@ -62,19 +62,6 @@ userSchema.methods.generateRandomToken = function () {
 
 // Seed a user
 var User = mongoose.model('User', userSchema);
-var usr = new User({firstname: 'jim', lastname: 'bob', username: 'bob', email: 'bob@example.com', password: 'secret' });
-var usr = new User({firstname: 'yaacov', lastname: 'yesha', username: 'yaacov', email: 'yesha@umbc.edu', password: 'yesha' });
-var usr = new User({firstname: 'gaurang', lastname: 'bhatt', username: 'gb4', email: 'gb4@umbc.edu', password: 'yesha' });
-
-
-usr.save(function(err) {
-  if(err) {
-    console.log(err);
-  } else {
-    console.log('user: ' + usr.username + " saved.");
-  }
-});
-
 
 // Passport session setup.
 //   To support persistent login sessions, Passport needs to be able to
