@@ -217,25 +217,43 @@ app.post('/login', function(req, res, next) {
 // var usr = new User({firstname: 'gaurang', lastname: 'bhatt', username: 'gb4', email: 'gb4@umbc.edu', password: 'yesha' });
 
 app.post('/register', function(req, res, next) {
-  console.log(req.param('firstname'));
-  var user = new User({firstname: req.param('firstname'), lastname: req.param('lastname'), 
-    username: req.param('username'), email: req.param('email'), password: req.param('password') });
-  user.save(function(err) {
-    if(err) {
-      console.log(err);
-    } else {
-      console.log('user: ' + user.username + " saved.");
-    }
-  });
-  req.logIn(user, function(err) {
-    if (err) { return next(err); }
-    return res.redirect('/');
-  });
+  var fname = req.param('firstname');
+  var lname = req.param('lastname');
+  var email = req.param('email');
+  var userName = req.param('username');
+  var userPass = req.param('password');
+  var secPass = req.param('secondPassword');
+
+  if(email.indexOf(".edu") < 3) {
+     var canAdd = false;
+     req.session.messages = "Invalid e-mail address. Requires a .edu account.";
+  }
+  else if(userPass == ""){
+     var canAdd = false;
+     req.session.messages = "No password entered".
+  } else if(userPass != secPass){
+     var canAdd = false;
+     req.session.messages = "Passwords do not match.";
+  }
+
+  if(canAdd) {
+    var user = new User({firstname: fname, lastname: lname, username: userName, email: email, password: userPass });
+    user.save(function(err) {
+      if(err) {
+        console.log(err);
+      } else {
+        console.log('user: ' + user.username + " saved.");
+      }
+    });
+
+    req.logIn(user, function(err) {
+      if (err) { return next(err); }
+      return res.redirect('/');
+    });
+  } else {
+    return res.redirect('/login')
+  }
 });
-
-
-
-
 
 app.get('/logout', function(req, res){
   req.logout();
