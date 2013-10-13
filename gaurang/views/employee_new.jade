@@ -1,0 +1,85 @@
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    title
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    meta(name='description', content='')
+    meta(name='author', content='')
+    link(href='https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css', rel='stylesheet')
+    link(href='https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css', rel='stylesheet')
+  body
+    .container
+      .row-fluid
+        .span12
+          .span6
+            .area
+              form.form-horizontal
+                .heading
+                  h4.form-heading Sign In
+                .control-group
+                  label.control-label(for='inputCompanyName') Company Name
+                  .controls
+                    input#inputCompanyName(type='text', placeholder='E.g. Some Software Pvt. Ltd.')
+                .control-group
+                  label.control-label(for='inputUsername') Username
+                  .controls
+                    input#inputUsername(type='text', placeholder='E.g. ashwinhegde')
+                .control-group
+                  label.control-label(for='inputPassword') Password
+                  .controls
+                    input#inputPassword(type='password', placeholder='Min. 8 Characters')
+                .control-group
+                  .controls
+                    label.checkbox
+                      input(type='checkbox')
+                      | Keep me signed in   ¦
+                      a.btn.btn-link(href='#') Forgot my password
+                    button.btn.btn-success(type='submit') Sign In
+                    button.btn(type='button') Help
+                .alert.alert-error
+                  button.close(type='button', data-dismiss='alert') ×
+                  strong Access Denied!
+                  | Please provide valid authorization.
+          .span6
+            .area
+              form.form-horizontal
+                .heading
+                  h4.form-heading Sign Up
+                .control-group
+                  label.control-label(for='inputCompanyName') Company Name
+                  .controls
+                    input#inputCompanyName(type='text', placeholder='E.g. Some Software Pvt. Ltd.')
+                .control-group
+                  label.control-label(for='inputFirst') First Name
+                  .controls
+                    input#inputFirst(type='text', placeholder='E.g. Ashwin')
+                .control-group
+                  label.control-label(for='inputLast') Last Name
+                  .controls
+                    input#inputLast(type='text', placeholder='E.g. Hegde')
+                .control-group
+                  label.control-label(for='inputEmail') Email
+                  .controls
+                    input#inputEmail(type='text', placeholder='E.g. ashwinh@cybage.com')
+                .control-group
+                  label.control-label(for='inputUser') Username
+                  .controls
+                    input#inputUser(type='text', placeholder='E.g. ashwinhegde')
+                .control-group
+                  label.control-label(for='inputPassword') Password
+                  .controls
+                    input#inputPassword(type='password', placeholder='Min. 8 Characters')
+                .control-group
+                  .controls
+                    label.checkbox
+                      input(type='checkbox')
+                      | I agree all your
+                      a(href='#') Terms of Services
+                    button.btn.btn-success(type='submit') Sign Up
+                    button.btn(type='button') Help
+                .alert.alert-info
+                  button.close(type='button', data-dismiss='alert') ×
+                  strong Confirmation: 
+                  | A confirmation email has been sent to your email.
+                  br
+                  | Thank you for your registration.

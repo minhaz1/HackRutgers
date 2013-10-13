@@ -1,0 +1,36 @@
+<% layout('layout') -%>
+<% if (message) { %>
+<p><%= message %></p>
+<% } %>
+<form action="/register" method="post">
+	<div>
+	<label>First Name:</label>
+	<input type="text" name="firstname"/><br/>
+	</div>
+	<div>
+	<label>Last Name:</label>
+	<input type="text" name="lastname"/><br/>
+	</div>
+	<label>Email:</label>
+	<input type="text" name="email"/><br/>
+	</div>
+	<div>
+	<label>Username:</label>
+	<input type="text" name="username"/><br/>
+	</div>
+	<div>
+	<label>Password:</label>
+	<input type="password" name="password"/><br/>
+	</div>
+	<div>
+	<label>Re-type Password:</label>
+	<input type="password" name="secondPassword"/><br/>
+	</div>
+	<div>
+	<input type="checkbox" name="rememberme"/>Remember Me
+	</div>
+	<div>
+	<input type="submit" value="Submit"/>
+	</div>
+</form>
+<p><small>Hint - bob:secret</small></p>
