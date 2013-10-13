@@ -1,0 +1,14 @@
+extends layout
+
+block content
+    h1= title
+    form#formAddUser(name="adduser",method="post",action="/adduser")
+        p
+             input#inputFname(type="text", placeholder="First Name", name="fname")
+             input#inputFname(type="text", placeholder="Last Name", name="lname")
+             input#inputEmail(type="text", placeholder=".edu email address", name="email")
+             input#inputUserName(type="text", placeholder="username", name="username")
+        p
+             input#inputUserPass(type="text", placeholder="password", name="password")
+             input#inputReUserPass(type="text", placeholder="retype password", name="re_password")
+             button#btnSubmit(type="submit") submit
