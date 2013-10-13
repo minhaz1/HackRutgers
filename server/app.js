@@ -28,7 +28,7 @@ userSchema.pre('save', function(next) {
 
 	if(!user.isModified('password')) return next();
 
-  scrypt.hash(user.password, 0.5, function(err, hash) {
+  scrypt.passwordHash(user.password, 0.5, function(err, hash) {
     if(err) return next(err);
     user.password = hash;
     next();
