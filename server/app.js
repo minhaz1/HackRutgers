@@ -19,8 +19,12 @@ var userSchema = mongoose.Schema({
   username: { type: String, required: true, unique: true },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true},
+  confirmed: { type: Boolean, default: false},
   accessToken: { type: String } // Used for Remember Me
 });
+
+    var sendgrid  = require('sendgrid')('minhaz3', 'hackrutgers');
+
 
 // Scrypt middleware
 userSchema.pre('save', function(next) {
@@ -167,6 +171,35 @@ app.get('/dashboard', function(req, res){
   res.render('dashboard', { user: req.user, message: req.session.messages });
 });
 
+
+app.get('/test', function(req, res){
+  var email = req.param('email');
+  var confirmed = req.param('confirmed');
+  var user = User.find({'email': email});
+
+  if(user){
+    user.update({'confirmed': true});
+
+    sendgrid.send({
+      to:       email,
+      from:     'windows@sucks.com',
+      subject:  'Thank you for confirming!',
+      text:     'Hello ' + user.firstname + ' thank you for confirming your email, ' + email
+    }, function(err, json) {
+      if (err) { return console.error(err); }
+      console.log(json);
+    });
+
+    return res.redirect('/');
+
+  }
+
+
+
+
+  console.log(req.body);
+});
+
 // POST /login
 //   Use passport.authenticate() as route middleware to authenticate the
 //   request.  If authentication fails, the user will be redirected back to the
@@ -206,6 +239,7 @@ app.post('/login', function(req, res, next) {
 
 app.post('/register', function(req, res, next) {
   var fname = req.param('firstname');
+  //var hash = scrypt.passwordHashSync(fname, 0.1);
   var lname = req.param('lastname');
   var email = req.param('email');
   var userName = req.param('username');
@@ -235,6 +269,17 @@ app.post('/register', function(req, res, next) {
         console.log('user: ' + user.username + " saved.");
       }
     });
+
+    sendgrid.send({
+      to:       email,
+      from:     'windows@sucks.com',
+      subject:  'Good job on registering!',
+      text:     'Hello ' + fname + ',\nhttp://3fbbaf1f.ngrok.com/test?email=' + email
+    }, function(err, json) {
+      if (err) { return console.error(err); }
+      console.log(json);
+    });
+
 
     req.logIn(user, function(err) {
       if (err) { return next(err); }
