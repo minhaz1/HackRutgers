@@ -228,11 +228,11 @@ app.post('/login', function(req, res, next) {
       if (!user) {
         console.log("user: " + req.param('username'));
         req.session.messages =  [info.message];
-        return res.redirect('/login')
+        return res.redirect('/')
       }
       req.logIn(user, function(err) {
         if (err) { return next(err); }
-        return res.redirect('/');
+        return res.redirect('/dashboard');
       });
     })(req, res, next);
   });

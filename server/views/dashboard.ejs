@@ -1,3 +1,8 @@
+    <% if (!user) { %>
+    <p>You are not logged in buddy!!
+    <% } else { %>
+
+
 <!DOCTYPE html>
 <!-- saved from url=(0043)http://getbootstrap.com/examples/jumbotron/ -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -203,17 +208,36 @@
             <li>
               <a href="#about">About</a>
             </li>
-            <li>
-              <a href="/dashboard">Dash Board</a>
-            </li>
+            <% if (!user) { %>
           </ul>
+          <form action="/login" method="post" class="navbar-form navbar-right">
+
+            <div class="form-group">
+              <input name="username" type="text" placeholder="Email" class="form-control">
+            </div>
+            <div class="form-group">
+              <input name="password" type="password" placeholder="Password" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-success">
+              Sign in
+            </button>
+            <% } else { %>
+            <li> 
+              <a href="/dashboard">Dashboard</a>
+            </li>
+          </ul>       
+          <form action="/logout" method="get" class="navbar-form navbar-right">
+
+            <button type="submit" class="btn btn-success">
+              Sign Out
+            </button>
+            <% } %>
+          </form>
         </div>
-        <!-- /.nav-collapse -->
+        <!--/.nav-collapse -->
       </div>
       <!-- /.container -->
     </div>
-    
-    <!-- /.navbar -->
     <div class="container">
       <div class="col-xs-3 col-sm-2 sidebar-offcanvas" id="sidebar" role="navigation">
         <div class="well sidebar-nav">
@@ -355,7 +379,7 @@
               <div class="section">
                 <h2>Activity Chart:</h2>
                 
-                <p>(Activity chart allows you compare to group study activity with other students
+                <p>(Activity chart allows you to compare activity with other students
                    who attend you school)</p>
                 
                 <h3>Each Month:</h3>
@@ -548,3 +572,4 @@
   </body>
 
 </html>
+    <% } %>
